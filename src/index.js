@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const routes = require('./routes');
 
 require('dotenv').config();
 
@@ -11,9 +12,6 @@ mongoose.connect(process.env.DATABASE_URL, {
 });
 
 server.use(express.json());
-
-server.get('/', (request, response) => {
-  return response.json({ message: 'test' });
-});
+server.use(routes);
 
 server.listen(3333);
